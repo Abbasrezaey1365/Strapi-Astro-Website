@@ -1,0 +1,49 @@
+---
+export const prerender = true;
+
+const STRAPI_URL = import.meta.env.PUBLIC_STRAPI_URL;
+
+export async function getStaticPaths() {
+  if (!STRAPI_URL) return [];
+
+  const res = await fetch(`${STRAPI_URL}/api/pages`);
+  const json = await res.json();
+  const pages = json?.data ?? [];
+
+  return pages.map((p) => ({
+    params: { slug: p.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+
+const res = await fetch(`${STRAPI_URL}/api/pages?filters[slug][$eq]=${slug}`);
+const json = await res.json();
+
+const page = json?.data?.[0];
+
+if (!page) {
+  return new Response("Not Found", { status: 404 });
+}
+
+const title = page.title ?? slug;
+const content = page.content;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+  </head>
+
+  <body class="bg-white text-black p-10">
+    <h1 class="text-3xl font-bold mb-4">{title}</h1>
+
+    {content ? (
+      <pre class="bg-gray-100 p-4 rounded text-sm">{JSON.stringify(content, null, 2)}</pre>
+    ) : (
+      <p>No content</p>
+    )}
+  </body>
+</html>

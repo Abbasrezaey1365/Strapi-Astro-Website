@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HeroSection from "../components/HeroSection.astro";
+import GurusSection from "../components/GurusSection.astro";
+
+const STRAPI_URL = import.meta.env.PUBLIC_STRAPI_URL;
+
+if (!STRAPI_URL) {
+  throw new Error("PUBLIC_STRAPI_URL is not defined. Add it to .env");
+}
+
+// fetch home page (build-time / server-side)
+const res = await fetch(`${STRAPI_URL}/api/pages?filters[slug][$eq]=home&populate=*`);
+const json = await res.json();
+
+const page = json?.data?.[0];
+if (!page) {
+  throw new Error("Home page not found in Strapi. Check slug=home and publish it.");
+}
+
+// texts from Strapi
+const heroTitleTop = page.heroTitleTop;
+const heroTitleMain = page.heroTitleMain;
+const heroSubtitle = page.heroSubtitle;
+
+// image from Strapi (build full url)
+const heroImageUrl = page.heroImage?.url ? `${STRAPI_URL}${page.heroImage.url}` : null;
+---
+
+<BaseLayout title={page.title ?? "Home"}>
+  <HeroSection
+    titleTop={heroTitleTop}
+    titleMain={heroTitleMain}
+    subtitle={heroSubtitle}
+    imageUrl={heroImageUrl}
+  />
+
+  <GurusSection />
+</BaseLayout>

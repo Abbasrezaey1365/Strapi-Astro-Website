@@ -1,0 +1,105 @@
+---
+const gurus = [
+  {
+    city: "Berlin",
+    name: "Ina Levinson",
+    role: "Up Beat Berlin Artist",
+    img: "/images/guru-1.png",
+  },
+  {
+    city: "Vienna",
+    name: "Dr. Marco Pustisek",
+    role: "Classical Music Expert",
+    img: "/images/guru-2.png",
+  },
+  {
+    city: "Berlin",
+    name: "Suzanne Burmel",
+    role: "Art Market Expert",
+    img: "/images/guru-3.png",
+  },
+];
+---
+
+<section class="bg-gradient-to-b from-[#1f1345] via-[#1a0f3c] to-[#140a2f] py-16">
+  <div class="mx-auto max-w-[1200px] px-6">
+
+    <!-- header -->
+    <div class="relative flex items-center justify-center mb-10">
+      <h2 class="text-[28px] font-light text-[#39C6C6]">
+        Explore our Metropol Gurus
+      </h2>
+
+      <a
+        href="#"
+        class="absolute right-0 top-1/2 -translate-y-1/2 text-[12px] text-white/70 hover:text-white transition"
+      >
+        Show all Gurus →
+      </a>
+    </div>
+
+    <!-- cards row -->
+    <div class="relative flex items-center justify-center gap-10">
+
+      <!-- left arrow -->
+      <button
+        class="absolute left-0 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full border border-white/20 text-white/70 hover:text-white hover:border-white/40 transition"
+        aria-label="Prev"
+      >
+        ‹
+      </button>
+
+      {gurus.map((g) => (
+        <div class="w-[240px]">
+          <div class="relative overflow-hidden rounded-md shadow-lg">
+            <img src={g.img} alt={g.name} class="h-[320px] w-full object-cover" />
+
+            <!-- city pill -->
+            <div class="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 text-[11px] text-black/70">
+              {g.city}
+            </div>
+
+            <!-- info overlay -->
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-4">
+              <div class="text-white text-[14px] font-semibold">{g.name}</div>
+              <div class="text-white/80 text-[11px]">{g.role}</div>
+            </div>
+          </div>
+        </div>
+      ))}
+
+      <!-- right arrow -->
+      <button
+        class="absolute right-0 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full border border-white/20 text-white/70 hover:text-white hover:border-white/40 transition"
+        aria-label="Next"
+      >
+        ›
+      </button>
+    </div>
+
+    <!-- bottom buttons row -->
+    <div class="mt-10 flex items-center justify-center gap-5">
+      <button class="w-[130px] border border-white/20 py-3 text-white/80 text-[12px] hover:border-white/40 hover:text-white transition">
+        Berlin Gurus
+        <div class="text-[10px] text-white/50">Explore now</div>
+      </button>
+
+      <button class="w-[130px] border border-white/20 py-3 text-white/80 text-[12px] hover:border-white/40 hover:text-white transition">
+        Vienna Gurus
+        <div class="text-[10px] text-white/50">Coming soon</div>
+      </button>
+
+      <button class="w-[130px] border border-white/20 py-3 text-white/80 text-[12px] hover:border-white/40 hover:text-white transition">
+        Istanbul Gurus
+        <div class="text-[10px] text-white/50">Coming soon</div>
+      </button>
+
+      <button
+        class="h-10 w-10 rounded-full border border-white/20 text-white/70 hover:text-white hover:border-white/40 transition"
+        aria-label="Next group"
+      >
+        ›
+      </button>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,41 @@
+---
+const { titleTop, titleMain, subtitle, imageUrl } = Astro.props;
+---
+
+<section class="relative w-full overflow-hidden">
+  <div class="relative w-full h-[720px] bg-black">
+    {imageUrl && (
+      <img
+        src={imageUrl}
+        alt="Hero"
+        class="absolute inset-0 h-full w-full object-cover"
+      />
+    )}
+
+    <div class="absolute left-[60px] top-1/2 -translate-y-1/2 text-white">
+      <div class="relative">
+        {titleTop && (
+          <h2 class="text-[64px] font-extralight leading-none text-white/80">
+            {titleTop}
+          </h2>
+        )}
+
+        {titleMain && (
+          <h1 class="mt-4 text-[110px] font-extralight leading-none tracking-tight">
+            {titleMain}
+          </h1>
+        )}
+
+        <div class="mt-6 h-[2px] w-[520px] bg-white/70"></div>
+      </div>
+    </div>
+  </div>
+
+  {subtitle && (
+    <div class="bg-white py-10">
+      <p class="mx-auto max-w-[760px] text-center text-[18px] text-black/70 leading-relaxed">
+        {subtitle}
+      </p>
+    </div>
+  )}
+</section>

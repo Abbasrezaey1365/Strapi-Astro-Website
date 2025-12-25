@@ -1,0 +1,87 @@
+---
+const nav = [
+  { label: "GURUS", href: "#" },
+  { label: "EXPERIENCES", href: "#" },
+  { label: "ABOUT", href: "#" },
+];
+---
+
+<header class="fixed inset-x-0 top-0 z-50 bg-[#ECECF2]/95 backdrop-blur border-b border-black/10">
+  <div class="mx-auto max-w-[1200px] px-6">
+    <div class="flex h-[74px] items-center justify-between">
+
+      <!-- Left: logo + tagline -->
+      <a href="/" class="flex items-center gap-4">
+        <img src="/images/logo.png" alt="MetropolGuru" class="h-8 w-auto" />
+        <span class="hidden md:block text-[12px] text-black/60 tracking-wide">
+          Discover cities in new ways
+        </span>
+      </a>
+
+      <!-- Center nav -->
+      <nav class="hidden md:flex items-center gap-12 text-[12px] font-semibold tracking-[0.12em] text-black/70">
+        {nav.map((item) => (
+          <a href={item.href} class="hover:text-black transition">
+            {item.label}
+          </a>
+        ))}
+      </nav>
+
+      <!-- Right -->
+      <div class="flex items-center gap-6 text-[12px] text-black/60">
+        <a href="#" class="flex items-center gap-2 hover:text-black transition">
+          <!-- user icon -->
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M15 7a4 4 0 11-8 0 4 4 0 018 0z"
+              stroke="currentColor"
+              stroke-width="1.6"
+            />
+            <path
+              d="M4 21a8 8 0 0116 0"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+            />
+          </svg>
+          Log in / Registration
+        </a>
+
+        <!-- 🌍 language icon -->
+        <button
+          class="inline-flex h-9 w-9 items-center justify-center rounded-full hover:bg-black/5 transition"
+          aria-label="Language"
+        >
+          <svg class="h-5 w-5 text-black/70" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M12 22a10 10 0 100-20 10 10 0 000 20z"
+              stroke="currentColor"
+              stroke-width="1.6"
+            />
+            <path
+              d="M2 12h20"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+            />
+            <path
+              d="M12 2c3 3 3 17 0 20"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+            />
+            <path
+              d="M12 2c-3 3-3 17 0 20"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- spacer -->
+<div class="h-[74px]"></div>
